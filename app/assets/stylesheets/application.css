@@ -11,3 +11,7 @@
  *= require_self
  *= require_tree .
  */
+
+textarea#comment_content.text{
+	height: 150px;
+}

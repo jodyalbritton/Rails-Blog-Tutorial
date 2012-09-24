@@ -3,13 +3,20 @@ Blog::Application.routes.draw do
 
 
 
+  
+
+  resources :posts do
+    resources :comments
+  end
+
   devise_for :users
   
-  
-  
+  get 'tags/:tag', to: 'posts#index', as: :tag
+
+  match "settings" => "settings#edit"
   get "home/index"
 
-  root :to => 'home#index'
+  root :to => 'posts#index'
    
 
   # The priority is based upon order of creation:

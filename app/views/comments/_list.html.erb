@@ -1,0 +1,16 @@
+<% @post.comments.each do |comment| %>
+<div class="row-fluid">
+	<div class="span2">
+		<%= comment.name %>
+		<%= gravatar_for comment %>
+	</div>
+	<div class="span10">
+		<div class="comment-content-header">
+	    </div>
+	    <div>
+		<%= comment.content %>
+		</div>
+	</div>
+</div>
+
+<% end %>

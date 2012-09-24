@@ -1,0 +1,30 @@
+<div class="row-fluid">
+<div class="span6">
+<div class="page-header">
+</div>
+<div class="post-content">
+  <%= @post.content.html_safe %>
+</div>
+<div class="post-comments">
+	<div id="post-comments-list" class="post-comment-list">
+		<%= render "comments/list"%>
+	</div>
+	<div class="post-comment-form">
+		<%= render "comments/form"%>
+	</div>
+	
+</div>
+</div>
+<div class="span6">
+	<div class="pull-right">
+		<%= link_to edit_post_path(@post) do %>
+         <span class="label label-info">Edit</span>
+         <% end %>
+         |
+         <%= link_to 'Back', posts_path %>
+	</div>
+</div>
+</div>
+
+
+

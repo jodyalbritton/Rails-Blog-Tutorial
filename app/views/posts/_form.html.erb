@@ -1,0 +1,21 @@
+<%= simple_form_for(@post) do |f| %>
+  <%= f.error_notification %>
+  <div class="row-fluid">
+  	<div class="span9">
+
+    <%= f.input :title %>
+    <%= f.input :content, :input_html => {:class=> "tinymce input span12"}%>
+    <%= tinymce %>
+    
+    </div>
+
+  <div class="span3">
+    <%= f.button :submit %>
+    <%= f.input :tag_list%>
+    <%= f.association :user %>
+  </div>
+  </div>
+
+<% end %>
+
+

@@ -26,7 +26,14 @@ gem 'devise'
 gem 'friendly_id', '~> 4.0.1'
 gem 'cancan'
 gem 'rolify'
+gem 'tinymce-rails'
+gem 'acts-as-taggable-on'
 
+
+group :test do
+  gem 'capybara', '1.1.2'
+  gem 'rspec-rails'
+end
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
