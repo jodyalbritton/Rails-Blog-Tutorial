@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  before_filter :find_config
   # GET /comments
   # GET /comments.json
   def index
@@ -26,8 +27,7 @@ class CommentsController < ApplicationController
   def new
     @post = Post.find(params[:post_id])
     
-    @comment = @post.comments.buld(params[:comment])
-
+    @comment = @post.comments.new
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @comment }
@@ -85,5 +85,11 @@ class CommentsController < ApplicationController
       format.html { redirect_to comments_url }
       format.json { head :no_content }
     end
+  end
+  
+   protected
+  
+  def find_config
+    @site_config = SiteConfig.where(:config_name => 'Default').first_or_create# GET /posts
   end
 end

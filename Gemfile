@@ -12,11 +12,13 @@ gem 'mysql2'
 # in production environments by default.
 group :assets do
   gem 'therubyracer', :platform => :ruby
-  gem 'coffee-rails'
   gem 'uglifier'
-  gem 'less-rails'
-  gem 'jquery-ui-rails'
-  gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
+   gem 'sass-rails',   '~> 3.2.3'
+  gem 'coffee-rails', '~> 3.2.1'
+  
+  # Add these gems
+  gem 'compass-rails', '~> 1.0.3'
+  gem 'zurb-foundation', '~> 3.0.9'
 end
 
 gem 'jquery-rails'

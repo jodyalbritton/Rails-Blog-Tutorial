@@ -1,35 +1,30 @@
 <% @posts.each do |post| %>
 
-  <div class="row-fluid">
-    <div class="row-fluid">
-      <div class="span12">
-        <h3><strong><%= link_to post.title, post %></strong></h3>
-      </div>
-    </div>
-    <div class="row-fluid">
-      <div class="span12">
-        	<%= post.content.html_safe %>
-        
-      
-      </div>
 
-    <div class="row-fluid">
-      <div class="span12">
-        <p></p>
-        <p>
+
+<article>
+	<h3><strong><%= link_to post.title, post %></strong></h3>
+        <h6>Written by <a href="#">John Smith</a> on August 12, 2012.</h6>
+
+       
+   
+            <p>
+            	<%= post.content.html_safe %>
+            </p> 
+             <p>
           
-            <i class="icon-time"></i> <%= time_ago_in_words(post.created_at) %>
-          | <i class="icon-comment"></i> <a href="#">3 Comments</a>
-          | <i class="icon-tags"></i> Tags : 
+            <i class="general-foundicon-clock"></i> <%= time_ago_in_words(post.created_at) %>
+          | <i class="social-foundicon-chat"></i> <%= post.comment_count %>
+          | <i class="social-foundicon-tag"></i> Tags : 
           <% post.tag_list.each do |t| %>
           	<%= link_to tag_path(t) do %>
                 <span class="label label-info"><%= t %></span> 
              <% end %>
           <% end %>
-        </p>
-      </div>
-    </div>
-  </div>
-</div>
+        </p>        
+  
+       
+    
+</article>
 <hr>
 <% end %>

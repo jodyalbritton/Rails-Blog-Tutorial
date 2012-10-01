@@ -1,9 +1,12 @@
 class PostsController < ApplicationController
-  # GET /posts
-  # GET /posts.json
+  
+  before_filter :find_config # GET /posts.json
   def index
+  
   if params[:tag]
+    
     @posts = Post.tagged_with(params[:tag])
+    
   else 
     @posts = Post.all
   end
@@ -18,7 +21,9 @@ class PostsController < ApplicationController
   # GET /posts/1.json
   def show
     @post = Post.find(params[:id])
+    @comments = @post.comments
     @comment = @post.comments.build(params[:comment])
+   
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @post }
@@ -83,5 +88,11 @@ class PostsController < ApplicationController
       format.html { redirect_to posts_url }
       format.json { head :no_content }
     end
+  end
+  
+  protected
+  
+  def find_config
+    @site_config = SiteConfig.where(:config_name => 'Default').first_or_create# GET /posts
   end
 end

@@ -5,15 +5,18 @@ Blog::Application.routes.draw do
 
   
 
+  resources :site_configs
+
   resources :posts do
     resources :comments
   end
+  
 
-  devise_for :users
+ devise_for :users, :controllers => { :registrations => 'registrations', :sessions => 'sessions' }
   
   get 'tags/:tag', to: 'posts#index', as: :tag
 
-  match "settings" => "settings#edit"
+  match 'site_config', to: 'site_configs#edit'
   get "home/index"
 
   root :to => 'posts#index'

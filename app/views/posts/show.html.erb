@@ -1,30 +1,37 @@
-<div class="row-fluid">
-<div class="span6">
+
+
 <div class="page-header">
+	<h2><%= @post.title %></h2>
 </div>
+<div class="page-sub-header">
+	
+
+		<%= link_to edit_post_path(@post) do %>
+         <span class="label label-info">Edit</span>
+         <% end %>
+         |
+         <%= link_to 'Back', posts_path %>
+
+</div>
+
 <div class="post-content">
   <%= @post.content.html_safe %>
 </div>
 <div class="post-comments">
 	<div id="post-comments-list" class="post-comment-list">
+		<% if @post.comments.any? %>
+		<p>
 		<%= render "comments/list"%>
+		</p>
+		<% end %>
 	</div>
 	<div class="post-comment-form">
 		<%= render "comments/form"%>
 	</div>
 	
 </div>
-</div>
-<div class="span6">
-	<div class="pull-right">
-		<%= link_to edit_post_path(@post) do %>
-         <span class="label label-info">Edit</span>
-         <% end %>
-         |
-         <%= link_to 'Back', posts_path %>
-	</div>
-</div>
-</div>
+
+
 
 
 

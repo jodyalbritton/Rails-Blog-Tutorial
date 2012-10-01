@@ -1,14 +1,18 @@
-<% @post.comments.each do |comment| %>
-<div class="row-fluid">
-	<div class="span2">
-		<%= comment.name %>
+
+<% @post.comment_list.each do |comment| %>
+<div class="row">
+	<div class="two columns">
+		<h5><%= comment.name %></h3>
 		<%= gravatar_for comment %>
 	</div>
-	<div class="span10">
+	<div class="ten columns">
 		<div class="comment-content-header">
+			<%= comment.created_at.strftime("%d, %b %y")%>
 	    </div>
 	    <div>
+	    <p>
 		<%= comment.content %>
+		</p>
 		</div>
 	</div>
 </div>

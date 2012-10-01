@@ -12,6 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require foundation
 //= require tinymce-jquery
-//= require twitter/bootstrap
 //= require_tree .

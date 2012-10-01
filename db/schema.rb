@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120923175805) do
+ActiveRecord::Schema.define(:version => 20120924095755) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -82,15 +82,13 @@ ActiveRecord::Schema.define(:version => 20120923175805) do
   add_index "roles", ["name", "resource_type", "resource_id"], :name => "index_roles_on_name_and_resource_type_and_resource_id"
   add_index "roles", ["name"], :name => "index_roles_on_name"
 
-  create_table "settings", :force => true do |t|
+  create_table "site_configs", :force => true do |t|
+    t.string   "name"
     t.string   "site_name"
-    t.integer  "user_id"
-    t.boolean  "offline"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.string   "config_name"
   end
-
-  add_index "settings", ["user_id"], :name => "index_settings_on_user_id"
 
   create_table "taggings", :force => true do |t|
     t.integer  "tag_id"
