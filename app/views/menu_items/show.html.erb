@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Target:</b>
+  <%= @menu_item.target %>
+</p>
+
+<p>
+  <b>Slug:</b>
+  <%= @menu_item.slug %>
+</p>
+
+<p>
+  <b>Target type:</b>
+  <%= @menu_item.target_type %>
+</p>
+
+<p>
+  <b>Weight:</b>
+  <%= @menu_item.weight %>
+</p>
+
+<p>
+  <b>Published:</b>
+  <%= @menu_item.published %>
+</p>
+
+
+<%= link_to 'Edit', edit_menu_item_path(@menu_item) %> |
+<%= link_to 'Back', menu_items_path %>

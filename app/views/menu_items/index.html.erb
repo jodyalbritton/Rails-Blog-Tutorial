@@ -1,0 +1,31 @@
+<h1>Listing menu_items</h1>
+
+<table>
+  <tr>
+    <th>Target</th>
+    <th>Slug</th>
+    <th>Target type</th>
+    <th>Weight</th>
+    <th>Published</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @menu_items.each do |menu_item| %>
+  <tr>
+    <td><%= menu_item.target %></td>
+    <td><%= menu_item.slug %></td>
+    <td><%= menu_item.target_type %></td>
+    <td><%= menu_item.weight %></td>
+    <td><%= menu_item.published %></td>
+    <td><%= link_to 'Show', menu_item %></td>
+    <td><%= link_to 'Edit', edit_menu_item_path(menu_item) %></td>
+    <td><%= link_to 'Destroy', menu_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Menu item', new_menu_item_path %>

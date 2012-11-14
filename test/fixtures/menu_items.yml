@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  target: 1
+  slug: MyString
+  target_type: MyString
+  weight: 1
+  published: false
+
+two:
+  target: 1
+  slug: MyString
+  target_type: MyString
+  weight: 1
+  published: false

@@ -5,6 +5,14 @@ Blog::Application.routes.draw do
 
   
 
+  resources :categories
+
+  resources :menu_items
+
+  resources :menus
+
+  resources :pages
+
   resources :site_configs
 
   resources :posts do
@@ -13,9 +21,14 @@ Blog::Application.routes.draw do
   
 
  devise_for :users, :controllers => { :registrations => 'registrations', :sessions => 'sessions' }
-  
+  get ':year/(:month)/(:day)', to: 'posts#index',:constraints => { :year => /\d{4}/ }
   get 'tags/:tag', to: 'posts#index', as: :tag
-
+   
+   
+   match "/:year/:month/:day/:id" => "posts#show", 
+    :constraints => { :year => /\d{4}/, :month => /\d{2}/, :day => /\d{2}/ },
+    :as => "posts_date"
+    
   match 'site_config', to: 'site_configs#edit'
   get "home/index"
 

@@ -2,18 +2,25 @@
 
 
 
-<article>
-	<h3><strong><%= link_to post.title, post %></strong></h3>
-        <h6>Written by <a href="#">John Smith</a> on August 12, 2012.</h6>
+<article class="article-style">
+	<h3><strong><%= link_to post.title, posts_date_path(post.created_at.year,post.created_at.month,post.created_at.day,post.slug) %></strong></h3>
+        Posted On <strong><%= post.created_at.strftime("%B %d, %Y")%></strong>
 
        
    
             <p>
             	<%= post.content.html_safe %>
             </p> 
-             <p>
-          
-            <i class="general-foundicon-clock"></i> <%= time_ago_in_words(post.created_at) %>
+             
+  
+<hr>
+		<p>
+		    <% if post.category.present? %>
+            Posted to <%= post.category.name %>
+            <% else %>
+            Posted to Uncategorized
+            <% end %>
+          | <i class="general-foundicon-clock"></i> <%= time_ago_in_words(post.created_at) %>
           | <i class="social-foundicon-chat"></i> <%= post.comment_count %>
           | <i class="social-foundicon-tag"></i> Tags : 
           <% post.tag_list.each do |t| %>
@@ -21,10 +28,7 @@
                 <span class="label label-info"><%= t %></span> 
              <% end %>
           <% end %>
-        </p>        
-  
-       
-    
+        </p>         
 </article>
-<hr>
+<br>
 <% end %>

@@ -1,15 +1,19 @@
 class PostsController < ApplicationController
   
-  before_filter :find_config # GET /posts.json
+ 
   def index
-  
-  if params[:tag]
-    
-    @posts = Post.tagged_with(params[:tag])
-    
-  else 
-    @posts = Post.all
+   if params[:year] and params[:month] and params[:day] and params[:id]
+    @posts = Post.where(['YEAR(created_at) = ? AND MONTH(created_at)= ? AND DAY(created_at)= ? AND slug = ?', params[:year],params[:month],params[:day],params[:id]])
+   elsif params[:year] and params[:month] and params[:day]
+    @posts = Post.where(['YEAR(created_at) = ? AND MONTH(created_at)= ? AND DAY(created_at)= ?', params[:year],params[:month],params[:day]])
+   elsif params[:year] and params[:month]
+    @posts = Post.where(['YEAR(created_at) = ? AND MONTH(created_at)= ?', params[:year],params[:month]])
+   elsif params[:year]
+    @posts = Post.where('YEAR(created_at) = ?', params[:year])
+   else
+    @posts = Post.all 
   end
+
 
     respond_to do |format|
       format.html # index.html.erb
@@ -89,10 +93,5 @@ class PostsController < ApplicationController
       format.json { head :no_content }
     end
   end
-  
-  protected
-  
-  def find_config
-    @site_config = SiteConfig.where(:config_name => 'Default').first_or_create# GET /posts
-  end
+
 end

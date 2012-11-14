@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120924095755) do
+ActiveRecord::Schema.define(:version => 20121014203749) do
 
   create_table "admin_users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -31,6 +31,13 @@ ActiveRecord::Schema.define(:version => 20120924095755) do
   add_index "admin_users", ["email"], :name => "index_admin_users_on_email", :unique => true
   add_index "admin_users", ["reset_password_token"], :name => "index_admin_users_on_reset_password_token", :unique => true
 
+  create_table "categories", :force => true do |t|
+    t.string   "name"
+    t.string   "slug"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "comments", :force => true do |t|
     t.integer  "post_id"
     t.string   "name"
@@ -44,13 +51,42 @@ ActiveRecord::Schema.define(:version => 20120924095755) do
 
   add_index "comments", ["post_id"], :name => "index_comments_on_post_id"
 
+  create_table "menu_items", :force => true do |t|
+    t.integer  "menu_id"
+    t.integer  "target_id"
+    t.string   "slug"
+    t.string   "target_type"
+    t.integer  "weight"
+    t.boolean  "published"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "menus", :force => true do |t|
+    t.string   "name"
+    t.string   "slug"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "pages", :force => true do |t|
+    t.string   "title"
+    t.string   "slug"
+    t.text     "content"
+    t.boolean  "published"
+    t.datetime "published_on"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
   create_table "posts", :force => true do |t|
     t.string   "title"
     t.text     "content"
     t.string   "slug"
     t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.integer  "category_id"
   end
 
   add_index "posts", ["slug"], :name => "index_posts_on_slug"

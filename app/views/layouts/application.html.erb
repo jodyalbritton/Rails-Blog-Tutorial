@@ -24,27 +24,27 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-	<div class="row">
-    <div class="twelve columns">
-      <ul class="nav-bar">
-        <li><a href="#">Link 1</a></li>
-        <li><a href="#">Link 2</a></li>
-        <li><a href="#">Link 3</a></li>
-        <li><a href="#">Link 4</a></li>
-      </ul>
 
-      <h1><%= @site_config.site_name %> </h1>
-      <hr />
-    </div>
-  </div>
-
-  <!-- End Nav -->
-
+<%  @site_config = SiteConfig.where(:config_name => 'Default').first_or_create %>
 
   <!-- Main Page Content and Sidebar -->
 
   <div class="row">
+    <!-- Sidebar -->
+    <aside class="three columns side-nav-style">
+     <h1><%= link_to @site_config.site_name, root_path %> </h1>
+      <ul class="side-nav">
+      	<% @pages = Page.all %>
+        <% @pages.each do |page| %>
+         <li><%= link_to page.title, page%></li>
+        <% end %>
+      </ul>
 
+
+
+    </aside>
+
+    <!-- End Sidebar -->
     <!-- Main Blog Content -->
     <div class="nine columns" role="content">
 
@@ -53,27 +53,7 @@
     <!-- End Main Content -->
 
     </div>
-    <!-- Sidebar -->
-    <aside class="three columns">
 
-      <h5>Categories</h5>
-      <ul class="side-nav">
-        <li><a href="#">News</a></li>
-        <li><a href="#">Code</a></li>
-        <li><a href="#">Design</a></li>
-        <li><a href="#">Fun</a></li>
-        <li><a href="#">Weasels</a></li>
-      </ul>
-
-      <div class="panel">
-        <h5>Featured</h5>
-        <p>Pork drumstick turkey fugiat. Tri-tip elit turducken pork chop in. Swine short ribs meatball irure bacon nulla pork belly cupidatat meatloaf cow.</p>
-        <a href="#">Read More &rarr;</a>
-      </div>
-
-    </aside>
-
-    <!-- End Sidebar -->
   </div>
 
   <!-- End Main Content and Sidebar -->
@@ -83,19 +63,12 @@
 
   <footer class="row">
     <div class="twelve columns">
-      <hr />
+     
       <div class="row">
         <div class="six columns">
-          <p>&copy; Copyright no one at all. Go to town.</p>
+          <p>&copy; <%= @site_config.name %> 2012</p>
         </div>
-        <div class="six columns">
-          <ul class="link-list right">
-            <li><a href="#">Link 1</a></li>
-            <li><a href="#">Link 2</a></li>
-            <li><a href="#">Link 3</a></li>
-            <li><a href="#">Link 4</a></li>
-          </ul>
-        </div>
+       
       </div>
     </div>
   </footer>

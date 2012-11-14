@@ -3,6 +3,7 @@
   
 
     <%= f.input :title %>
+    <%= f.association :category %>
     <%= f.input :content, :input_html => {:class=> "tinymce"}%>
     <%= tinymce %>
     <%= f.input :tag_list%>
